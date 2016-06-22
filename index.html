@@ -1,0 +1,125 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CoMaL</title>
+<link href="styles/main.css" rel="stylesheet" type="text/css">
+<!--[if lte IE 8]>
+<script type="text/javascript" src="js/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<div id="wrapper">
+  <header id="top">
+    <h1>CoMaL - CoMaL: Good Features to Match on Object Boundaries</h1>
+<h2><a href=" 	http://www.cs.duke.edu/~swarnakr">Swarna K Ravindran</a> and <a href="http://www.cse.iitm.ac.in/~amittal/"> Anurag Mittal</a> </h2>
+<h2> Indian Institute of Technology Madras</h2>   
+
+   
+  <figure><img src="docs/images/title.png" width="100%"  alt="" /></a></figure>  
+ 
+<p>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+<a href="docs/cvpr16_CoMaL.pdf" target="_blank">CVPR 2016 PDF</a> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+<a href="docs/code_CoMaL.zip" target="_blank">CODE</a>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+ <a href="docs/supplementary.zip",style="text-align:center">Additional Results</a>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+ <a href="docs/CoMaL_Dataset.zip",style="text-align:right">Download CoMaL dataset</a></p>
+
+  <br>
+  <br>
+  
+    <h2>Abstract</h2>
+    
+    <p></p>
+    
+    <p>Traditional Feature Detectors and Trackers use information aggregation in 2D patches to detect and match discriminative patches.  However, this information does not remain the same at object boundaries when there is object motion against a significantly varying background.  In this paper, we propose a new approach for feature detection, tracking and re-detection that gives significantly improved results at the object boundaries.  We utilize {\em level lines} or {\em iso-intensity curves} that often remain stable and can be reliably 
+detected even at the object boundaries, which they often trace.
+Stable portions of long level lines are detected and points of high curvature  are detected on such curves for corner detection.   
+Further, this level line  
+is used to separate the portions belonging to the two objects, which is then used for robust matching of such points.  While such CoMaL (Corners on 
+Maximally-stable Level Line Segments) points were found to be much more reliable at the object boundary
+regions, they perform 
+comparably at the interior regions as well. This is illustrated in exhaustive experiments 
+% for point tracking applications on benchmark tracking datasets.
+on real-world datasets.
+ </p>
+<br><br>
+  
+  <nav id="mainnav">
+      <ul>
+        <li><a href="index.html" class="thispage">Motivation</a></li>
+        <li><a href="method.html">Method</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="future.html">CoMaL Tracking</a></li>
+
+      </ul>
+    </nav>
+  
+    </header>
+
+<article id="aboutmemain">
+<p>Feature Detection and Matching approaches perform reasonably in the interior
+of objects but they perform quite poorly on the object boundaries [1].
+This can be attributed to two reasons.  First, the detectors rely on fixed (scalable) image patches which 
+may straddle object boundaries and depth discontinuities and a change in these can lead to a change in the detected object.</p>
+
+<p>
+Second, even if a boundary point is detected at the same location w.r.t. one of the objects,
+matching is very difficult as the part in the patch belonging to the other object changes.
+(Figure 1).</p>
+<div align="center">
+<table width=660 border="0">
+        <tr> <td><div align="center"><img src="docs/images/changingBackground.jpg" width="100%"  /></div></td></tr>
+	<tr><td><div text-align="center", style="margin-top:6pt""><strong>Figure 1.</strong> A car moving against a varying background.  Nearly half of the patch centered on a Harris corner at the object boundary is part of the background.</div></td></tr>
+</table>
+</div>
+
+<p>
+Level lines typically trace object boundaries and also
+often move with the object (Figure 2).
+By detecting corners on level lines that are stable, discriminative points can
+be found.    
+We refer to such points as Corners 
+on Maximally-stable Level Line Segments (CoMaL).  Furthermore, this level line itself typically separates the object from the background at the boundaries 
+and thus allows for more robust matching.
+
+</p>
+
+<p>
+Several detectors have used level lines in the past, the most popular among them being  
+the Maximally Stable Extremal Regions(MSER) detector [2].
+However, MSER considers only small closed level lines and throws away the information in longer level lines in order
+to preserve the locality of a feature. Thus, it typically returns very few points and is not a popular choice for many other detection and matching
+applications where one needs to obtain a sufficient number of points.
+  
+</p>
+
+<div align="center">
+<table width=660 border="0">
+        <tr> <td><div align="center"><img src="docs/images/largeMser1.png" width="290px"/></div></td>
+		<td><div align="center"><img src="docs/images/largeMser_comic.png" width="290px"  /></div></td>
+	</tr>
+	<tr><td><div text-align="center", style="margin-top:6pt""><strong>Figure 2.</strong> (a) A long level line that forms the boundary of an object.
+The information present along such level lines is discarded by MSER.</td><td> (b) A few corners (marked in red)
+detected as locally stable portions of the level lines.</div></td></tr>
+</table>
+</div>
+
+</article>
+
+<div>
+    <h2>References</h2>
+[1] ~\cite{zhang:2010}
+[2] ~\cite{matas:2002}
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+  <footer>
+    <p> Contact: swarnakr@cs.duke.edu, amittal@cse.iitm.ac.in </p>
+  </footer>
+</div>
+</body>
+</html>
+
